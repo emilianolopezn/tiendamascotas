@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 //Usar el modelo
 use App\Mascota;
+use App\Especie;
 
 class MascotaController extends Controller
 {
@@ -36,7 +37,12 @@ class MascotaController extends Controller
      */
     public function create()
     {
-        //
+        $especies = Especie::all();
+
+        $argumentos = array();
+        $argumentos['especies'] = $especies;
+
+        return view('mascotas.create',$argumentos);
     }
 
     /**
@@ -47,7 +53,23 @@ class MascotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Creando instancia
+        $nuevaMascota = new Mascota();
+        //Los parametros del input son los 'name' de los
+        //inputs del formulario del create
+        $nuevaMascota->id_especie = 
+            $request->input('especie');
+        $nuevaMascota->nombre = 
+            $request->input('nombre');
+        $nuevaMascota->precio = 
+            $request->input('precio');
+        $nuevaMascota->nacimiento = 
+            $request->input('nacimiento');
+
+        //Guardar el nuevo registro
+        $nuevaMascota->save();
+
+        return redirect()->route('mascotas.index');
     }
 
     /**
