@@ -18,7 +18,8 @@ class MascotaController extends Controller
     public function index()
     {
         //Trae todos los registros
-        $mascotas = Mascota::all();
+        $mascotas = Mascota::orderBy('id','desc')
+            ->get();
 
         //Creamos los argumentos que le enviaremos
         //a la vista
