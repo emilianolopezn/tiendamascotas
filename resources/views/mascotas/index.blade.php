@@ -24,7 +24,9 @@
                     <td>{{ $mascota->nombre }}</td>
                     <td>{{ $mascota->precio }}</td>
                     <td>
-                        <button>Editar</button>
+                        <a href="{{route('mascotas.edit',$mascota->id)}}">
+                            <button>Editar</button>
+                        </a>
                         <button>Borrar</button>
                     </td>
                 </tr>
