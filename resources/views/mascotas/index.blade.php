@@ -27,7 +27,12 @@
                         <a href="{{route('mascotas.edit',$mascota->id)}}">
                             <button>Editar</button>
                         </a>
-                        <button>Borrar</button>
+                        <form method="POST" 
+                            action="{{route('mascotas.destroy',$mascota->id)}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Borrar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
