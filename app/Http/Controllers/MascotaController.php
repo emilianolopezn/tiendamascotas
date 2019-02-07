@@ -143,6 +143,7 @@ class MascotaController extends Controller
         $mascota = 
             Mascota::find($id);
         $mascota->delete();
+        
         return redirect()->route('mascotas.index');
     }
 }
