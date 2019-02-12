@@ -10,21 +10,24 @@
                     <h3 class="box-title">Tabla de lista de mascotas</h3>
                 </div>
                 <div class="box-body">
-                    <a href="{{route('mascotas.create')}}">
-                        <button class="btn btn-primary">Agregar mascota</button>
+                    <a href="{{route('mascotas.create')}}" >
+                        <button class="btn btn-primary" style="margin-bottom: 20px;">Agregar mascota</button>
                     </a>
-                    <div class="alert alert-success alert-dismissible" style="margin-top: 20px;">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                        Success alert preview. This alert is dismissable.
-                    </div>
-                    <div class="alert alert-danger alert-dismissible" style="margin-top: 20px;">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                        Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
-                        soul, like these sweet mornings of spring which I enjoy with my whole heart.
-                    </div>
-                    <table class="table">
+                    @if(Session::has('exito'))
+                        <div class="alert alert-success alert-dismissible" style="margin-top: 20px;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+                            {{ Session::get('exito') }}
+                        </div>
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible" style="margin-top: 20px;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                            {{Session::get('error')}}
+                        </div>
+                    @endif
+                    <table class="table table-hover table-bordered" id="tablaMascotas">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -84,4 +87,21 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('estilos')
+<!-- DataTables -->
+<link rel="stylesheet" href="/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+@endsection
+
+@section('scripts')
+<!-- DataTables -->
+<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('#tablaMascotas').DataTable();
+    });
+    
+</script>
 @endsection
