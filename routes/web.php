@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::resource('mascotas','MascotaController');
 Route::get('starter','StarterController@starter')
     ->name('starter');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
