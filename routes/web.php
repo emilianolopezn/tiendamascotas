@@ -12,13 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
+Route::get('/dashboard','DashboardController@dashboard')
+    ->name('dashboard');
 Route::resource('mascotas','MascotaController');
 Route::get('starter','StarterController@starter')
     ->name('starter');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
