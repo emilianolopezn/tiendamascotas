@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 14, 2019 at 07:26 PM
+-- Generation Time: Feb 21, 2019 at 07:45 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -107,6 +107,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Emiliano', 'emiliano@correo.com', NULL, '$2y$10$1jExVuRooacLCgHiuRVPXecheoc210KnWNxJXovf8nyntZt7qTCR6', 'vp7QZLL11d6A72F7X3oUs6DAA3TKxMCrR6awdnMIaYZXurDxUyJUWe6cZGH9', '2019-02-22 02:04:17', '2019-02-22 02:04:17');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -168,7 +175,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
