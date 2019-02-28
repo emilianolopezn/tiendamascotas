@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         @if($usuario->foto)
-                        <img src="{{$usuario->foto}}" 
+                        <img src="/storage/{{$usuario->foto}}" 
                             class="img-responsive"
                             style="width:200px; height:auto;"/>
                         @endif
