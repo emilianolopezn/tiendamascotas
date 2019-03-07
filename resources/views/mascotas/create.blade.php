@@ -32,7 +32,7 @@
         
         <div class="form-group">
             <label class="control-label">País</label>
-            <select class="form-control" name="pais" required>
+            <select class="form-control" name="pais" id="slcPais" required>
                 <option selected disabled value="">Elige un país</option>
                 @foreach($paises as $pais)
                     <option value="{{$pais->id}}">{{$pais->nombre}}</option>
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
             <label class="control-label">Estado</label>
-            <select class="form-control" name="estado" required>
+            <select class="form-control" name="estado" id="slcEstado" required>
                 <option selected disabled value="">Elige un estado</option>
                 
             </select>
@@ -50,4 +50,20 @@
             <button type="submit" class="btn btn-primary">Crear nueva mascota</button>
         </div>
     </form>
+@endsection
+
+@section('scripts')
+<script>
+    function doChangePais(event) {
+        $.get("/api/estados/" + $("#slcPais").val(),
+            function (data) {
+                console.log(data);
+            });
+    }
+
+    $(function () {
+        $("#slcPais").change(doChangePais);
+    });
+</script>
+
 @endsection
