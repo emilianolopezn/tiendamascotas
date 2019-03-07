@@ -80,9 +80,16 @@
         }
     }
 
+    function doChangeContrasena(e) {
+        $(".grupo-password").removeClass('has-error');
+        $("#spnMensajeContrasenaNoCoincide").hide();
+    }
+
     $(function () {
         $("#spnMensajeContrasenaNoCoincide").hide();
         $("#btnActualizar").click(doClickActualizar);
+        $("#txtContrasena").change(doChangeContrasena);
+        $("#txtConfirmarContrasena").change(doChangeContrasena);
     });
 </script>
 @endsection

@@ -5,25 +5,49 @@
 @section('contenido')
     <form action="{{route('mascotas.store')}}" method="post">
         @csrf
-        <label>Especie</label>
-        <select name="especie" required>
-            <option disabled selected value="">Elige una especie</option>
-            @foreach($especies as $especie)
-                <option value="{{$especie->id}}">
-                    {{$especie->nombre}}
-                </option>
-            @endforeach
-        </select>
-        <br/>
-        <label>Nombre</label>
-        <input required type="text" name="nombre" placeholder="Nombre de la mascota">
-        <br/>
-        <label>Precio</label>
-        <input required type="text" name="precio" placeholder="Precio en pesos $$">
-        <br/>
-        <label>Fecha de nacimiento</label>
-        <input required type="date" name="nacimiento" >
-        <br/>
-        <button type="submit">Crear nueva mascota</button>
+        <div class="form-group">
+            <label class="control-label">Especie</label>
+            <select class="form-control" name="especie" required>
+                <option disabled selected value="">Elige una especie</option>
+                @foreach($especies as $especie)
+                    <option value="{{$especie->id}}">
+                        {{$especie->nombre}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+      
+        <div class="form-group">
+            <label class="control-label">Nombre</label>
+            <input required type="text"  class="form-control" name="nombre" placeholder="Nombre de la mascota">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Precio</label>
+            <input required type="text" class="form-control" name="precio" placeholder="Precio en pesos $$">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Fecha de nacimiento</label>
+            <input required type="date" class="form-control" name="nacimiento" >
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label">País</label>
+            <select class="form-control" name="pais" required>
+                <option selected disabled value="">Elige un país</option>
+                @foreach($paises as $pais)
+                    <option value="{{$pais->id}}">{{$pais->nombre}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Estado</label>
+            <select class="form-control" name="estado" required>
+                <option selected disabled value="">Elige un estado</option>
+                
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Crear nueva mascota</button>
+        </div>
     </form>
 @endsection

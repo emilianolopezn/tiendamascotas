@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 21, 2019 at 07:45 PM
+-- Generation Time: Mar 07, 2019 at 12:54 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.8
 
@@ -34,6 +34,32 @@ INSERT INTO `especies` (`id`, `nombre`) VALUES
 (2, 'Perro'),
 (3, 'Hamster'),
 (4, 'Perico');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `estados`
+--
+
+CREATE TABLE `estados` (
+  `id` int(11) NOT NULL,
+  `id_pais` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `estados`
+--
+
+INSERT INTO `estados` (`id`, `id_pais`, `nombre`) VALUES
+(1, 1, 'Sonora'),
+(2, 1, 'Coahuila'),
+(3, 1, 'Durango'),
+(4, 1, 'Zacatecas'),
+(5, 2, 'Alabama'),
+(6, 2, 'Arizona'),
+(7, 2, 'Texas'),
+(8, 2, 'Florida');
 
 -- --------------------------------------------------------
 
@@ -80,6 +106,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `paises`
+--
+
+CREATE TABLE `paises` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `paises`
+--
+
+INSERT INTO `paises` (`id`, `nombre`) VALUES
+(1, 'Mexico'),
+(2, 'Estados Unidos');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -103,15 +148,16 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Emiliano', 'emiliano@correo.com', NULL, '$2y$10$1jExVuRooacLCgHiuRVPXecheoc210KnWNxJXovf8nyntZt7qTCR6', 'vp7QZLL11d6A72F7X3oUs6DAA3TKxMCrR6awdnMIaYZXurDxUyJUWe6cZGH9', '2019-02-22 02:04:17', '2019-02-22 02:04:17');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `foto`) VALUES
+(1, 'Emiliano', 'emiliano@correo.com', NULL, '$2y$10$0PsNHxCUW3Y6fPgdqTaY3OEYon3kXFUiZoB/bgJbp79jQbkg1u9nm', '6OFIHHWHF0SVUEMgcDTGbchbDOyjUGZm2uu5fAKxz0NDfIqsNTdaytw40ZfN', '2019-02-22 02:04:17', '2019-03-07 07:38:50', 'p1155191813111.jpg');
 
 --
 -- Indexes for dumped tables
@@ -124,6 +170,13 @@ ALTER TABLE `especies`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pais` (`id_pais`);
+
+--
 -- Indexes for table `mascotas`
 --
 ALTER TABLE `mascotas`
@@ -134,6 +187,12 @@ ALTER TABLE `mascotas`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `paises`
+--
+ALTER TABLE `paises`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -160,6 +219,12 @@ ALTER TABLE `especies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `estados`
+--
+ALTER TABLE `estados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `mascotas`
 --
 ALTER TABLE `mascotas`
@@ -172,6 +237,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `paises`
+--
+ALTER TABLE `paises`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -180,6 +251,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `estados`
+--
+ALTER TABLE `estados`
+  ADD CONSTRAINT `estados_ibfk_1` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
 
 --
 -- Constraints for table `mascotas`
