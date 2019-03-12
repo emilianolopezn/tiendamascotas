@@ -57,7 +57,18 @@
     function doChangePais(event) {
         $.get("/api/estados/" + $("#slcPais").val(),
             function (data) {
-                console.log(data);
+                //console.log(data);
+                $("#slcEstado").empty();
+                $("#slcEstado").append(
+                    '<option selected disabled value="">Elige un estado</option>');
+                for(var i=0; i<data.length; i++) {
+                    $("#slcEstado").append(
+                        '<option value="' +
+                        data[i].id + '">' + data[i].nombre +
+                        '</option>'
+                        //<option value="1">Sonora</option>
+                    );
+                }
             });
     }
 
